@@ -1,0 +1,333 @@
+.marketing-banner {
+  padding: 2.5rem 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.marketing-banner__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.marketing-banner__image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marketing-banner__image-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 0.75rem;
+  overflow: visible;
+}
+
+.marketing-banner__vector {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.marketing-banner__image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.marketing-banner__floating-card {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #111827;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.marketing-banner__floating-card--top {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.marketing-banner__floating-card--bottom {
+  bottom: 0.5rem;
+  left: 0.5rem;
+}
+
+.marketing-banner__floating-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.marketing-banner__logo-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(17, 24, 39, 0.88);
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.marketing-banner__logo-badge-text {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.marketing-banner__logo-badge-sub {
+  font-size: 0.625rem;
+  color: #a78bfa;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.marketing-banner__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.marketing-banner__badge {
+  display: inline-block;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+  margin-bottom: 0.75rem;
+}
+
+.marketing-banner__title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.1;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.marketing-banner__highlight {
+  color: #6366f1;
+}
+
+.marketing-banner__description {
+  font-size: 0.9375rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  max-width: 420px;
+}
+
+.marketing-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #111827;
+  color: white;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+  width: fit-content;
+}
+
+.marketing-banner__btn:hover {
+  background-color: #1f2937;
+  transform: scale(1.02);
+}
+
+.marketing-banner__stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.marketing-banner__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.marketing-banner__stat-number {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.marketing-banner__stat-label {
+  font-size: 0.6875rem;
+  color: #6b7280;
+}
+
+.marketing-banner__stat-divider {
+  width: 1px;
+  height: 2rem;
+  background-color: #e5e7eb;
+}
+
+@media (max-width: 1024px) {
+  .marketing-banner__container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .marketing-banner__image-wrapper {
+    order: -1;
+  }
+  
+  .marketing-banner__image-container {
+    max-width: 100%;
+  }
+  
+  .marketing-banner__title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .marketing-banner {
+    padding: 1.5rem 0;
+  }
+  
+  .marketing-banner__container {
+    padding: 0 1rem;
+  }
+  
+  .marketing-banner__title {
+    font-size: 1.75rem;
+  }
+  
+  .marketing-banner__stats {
+    gap: 1rem;
+  }
+  
+  .marketing-banner__logo-badge {
+    padding: 0.5rem 1rem;
+  }
+  
+  .marketing-banner__logo-badge-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketing-banner {
+    padding: 1rem 0;
+  }
+  
+  .marketing-banner__container {
+    padding: 0 0.75rem;
+    gap: 1rem;
+  }
+  
+  .marketing-banner__title {
+    font-size: 1.5rem;
+  }
+  
+  .marketing-banner__description {
+    font-size: 0.8125rem;
+  }
+  
+  .marketing-banner__stats {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .marketing-banner__stat-divider {
+    display: none;
+  }
+  
+  .marketing-banner__btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .marketing-banner__floating-card {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.625rem;
+  }
+  
+  .marketing-banner__floating-card--top {
+    top: 0.375rem;
+    right: 0.375rem;
+  }
+  
+  .marketing-banner__floating-card--bottom {
+    bottom: 0.375rem;
+    left: 0.375rem;
+  }
+  
+  .marketing-banner__logo-badge {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.5rem;
+  }
+  
+  .marketing-banner__logo-badge-text {
+    font-size: 0.875rem;
+  }
+  
+  .marketing-banner__logo-badge-sub {
+    font-size: 0.5rem;
+  }
+  
+  .marketing-banner__floating-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .marketing-banner {
+    padding: 0.75rem 0;
+  }
+  
+  .marketing-banner__container {
+    padding: 0 0.5rem;
+  }
+  
+  .marketing-banner__title {
+    font-size: 1.25rem;
+  }
+  
+  .marketing-banner__logo-badge {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .marketing-banner__logo-badge-text {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,149 @@
+.footer {
+  background-color: #111827;
+  color: #e5e7eb;
+  padding: 3rem 0 1.5rem;
+  margin-top: auto;
+}
+
+.footer__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #374151;
+}
+
+.footer__heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.footer__text {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+.footer__subheading {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__list li {
+  margin-bottom: 0.5rem;
+}
+
+.footer__link {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.footer__link:hover {
+  color: #ffffff;
+}
+
+.footer__bottom {
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footer__copyright {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+  
+  .footer__container {
+    padding: 0 1rem;
+  }
+  
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .footer__text {
+    max-width: 100%;
+  }
+  
+  .footer {
+    padding: 1.5rem 0 0.75rem;
+  }
+  
+  .footer__container {
+    padding: 0 0.75rem;
+  }
+  
+  .footer__heading {
+    font-size: 1.125rem;
+  }
+  
+  .footer__subheading {
+    font-size: 0.75rem;
+  }
+  
+  .footer__link {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer {
+    padding: 1rem 0 0.5rem;
+  }
+  
+  .footer__container {
+    padding: 0 0.5rem;
+  }
+  
+  .footer__grid {
+    gap: 1rem;
+  }
+  
+  .footer__heading {
+    font-size: 1rem;
+  }
+  
+  .footer__text {
+    font-size: 0.75rem;
+  }
+}

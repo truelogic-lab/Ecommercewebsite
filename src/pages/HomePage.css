@@ -1,0 +1,16 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.home-page > * {
+  width: 100%;
+}
+
+/* Mobile first - ensure all sections adapt */
+@media (max-width: 640px) {
+  .home-page {
+    overflow-x: hidden;
+  }
+}

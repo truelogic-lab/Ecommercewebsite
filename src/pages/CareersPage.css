@@ -1,0 +1,289 @@
+.careers-page {
+  padding: 2rem 0;
+  background-color: #f8fafc;
+  min-height: 60vh;
+}
+
+.careers-page__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.careers-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin-bottom: 1.5rem;
+}
+
+.careers-page__back:hover {
+  color: #111827;
+}
+
+.careers-page__title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+}
+
+.careers-page__subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0 0 2rem 0;
+}
+
+.careers-page__hero {
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: #ffffff;
+}
+
+.careers-page__hero-content {
+  max-width: 700px;
+}
+
+.careers-page__hero-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.careers-page__hero-text {
+  font-size: 0.9375rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.careers-page__hero-stats {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.careers-page__hero-stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.careers-page__hero-stat-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.careers-page__section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 1rem 0;
+}
+
+.careers-page__benefits {
+  margin-bottom: 2.5rem;
+}
+
+.careers-page__benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.careers-page__benefit {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.careers-page__benefit-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+}
+
+.careers-page__benefit-description {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.careers-page__openings {
+  margin-bottom: 2.5rem;
+}
+
+.careers-page__openings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.careers-page__opening {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.careers-page__opening-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.careers-page__opening-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.careers-page__opening-apply {
+  background-color: #111827;
+  color: white;
+  border: none;
+  padding: 0.375rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.careers-page__opening-apply:hover {
+  background-color: #1f2937;
+}
+
+.careers-page__opening-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.careers-page__opening-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.careers-page__opening-description {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.careers-page__cta {
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.careers-page__cta-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.25rem 0;
+}
+
+.careers-page__cta-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 1rem 0;
+}
+
+.careers-page__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background-color: #111827;
+  color: white;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.careers-page__cta-btn:hover {
+  background-color: #1f2937;
+}
+
+@media (max-width: 1024px) {
+  .careers-page__benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .careers-page__title {
+    font-size: 1.5rem;
+  }
+  
+  .careers-page__hero {
+    padding: 1.5rem;
+  }
+  
+  .careers-page__hero-stats {
+    gap: 1.5rem;
+  }
+  
+  .careers-page__benefits-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .careers-page {
+    padding: 1.25rem 0;
+  }
+  
+  .careers-page__container {
+    padding: 0 1rem;
+  }
+  
+  .careers-page__benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .careers-page__hero-stats {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .careers-page__opening-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .careers-page__opening-apply {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .careers-page__opening-meta {
+    gap: 0.5rem;
+  }
+  
+  .careers-page__cta {
+    padding: 1.5rem;
+  }
+}
