@@ -1,7 +1,7 @@
 .flash-sale {
-  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   padding: 2rem 0;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #f3f4f6;
 }
 
 .flash-sale__container {
@@ -97,7 +97,7 @@
   font-weight: 600;
   border-radius: 0.375rem;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.2s, transform 0.15s;
   align-self: flex-start;
 }
 
