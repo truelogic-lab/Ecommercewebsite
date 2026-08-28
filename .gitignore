@@ -33,3 +33,5 @@ Thumbs.db
 # Backup files
 *.zip
 shopverse_backup_*.zip
+.vercel
+.env*

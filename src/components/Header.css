@@ -306,10 +306,6 @@
   .header__search-overlay--open {
     padding: 0.75rem 1rem;
   }
-  
-  .header__icon-btn--track {
-    display: flex;
-  }
 }
 
 @media (max-width: 480px) {

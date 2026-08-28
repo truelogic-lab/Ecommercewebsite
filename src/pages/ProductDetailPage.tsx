@@ -1,31 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Star, ShoppingCart, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, Check } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingCart, Truck, RotateCcw, Shield, Minus, Plus, Check } from 'lucide-react';
 import { useCartContext } from '../context/CartContext';
-import { products } from '../data/products';
+import { useAdmin } from '../context/AdminContext';
 import './ProductDetailPage.css';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  reviews: number;
-  image: string;
-  originalPrice?: number;
-  rating?: number;
-  category: string;
-  description: string;
-  features: string[];
-  inStock: boolean;
-  sizes?: string[];
-  colors?: string[];
-}
 
 export const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addItem } = useCartContext();
-  const [product, setProduct] = useState<Product | null>(null);
+  const { products } = useAdmin();
+  const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string>('');
@@ -49,7 +34,7 @@ export const ProductDetailPage: React.FC = () => {
     };
 
     fetchProduct();
-  }, [id]);
+  }, [id, products]);
 
   const handleAddToCart = () => {
     if (product) {
@@ -83,7 +68,7 @@ export const ProductDetailPage: React.FC = () => {
     return (
       <div className="product-detail-page">
         <div className="product-detail-page__container">
-          <h1 className="product-detail-page__title">Product not found</h1>
+          <h1>Product not found</h1>
           <Link to="/" className="product-detail-page__back-btn">Back to Shop</Link>
         </div>
       </div>
@@ -109,6 +94,9 @@ export const ProductDetailPage: React.FC = () => {
             />
             {discount > 0 && (
               <span className="product-detail-page__discount-badge">-{discount}%</span>
+            )}
+            {!product.inStock && (
+              <span className="product-detail-page__out-of-stock">Out of Stock</span>
             )}
           </div>
 
@@ -137,7 +125,7 @@ export const ProductDetailPage: React.FC = () => {
               {product.originalPrice && (
                 <span className="product-detail-page__original-price">${product.originalPrice.toFixed(2)}</span>
               )}
-              <span className="product-detail-page__stock-status">
+              <span className={`product-detail-page__stock-status ${!product.inStock ? 'product-detail-page__stock-status--out' : ''}`}>
                 {product.inStock ? (
                   <><Check size={14} strokeWidth={2} /> In Stock</>
                 ) : (
@@ -152,7 +140,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="product-detail-page__features">
                 <h4 className="product-detail-page__features-title">Features</h4>
                 <ul className="product-detail-page__features-list">
-                  {product.features.map((feature, index) => (
+                  {product.features.map((feature: string, index: number) => (
                     <li key={index} className="product-detail-page__feature-item">
                       <Check size={14} className="product-detail-page__feature-check" strokeWidth={2} />
                       {feature}
@@ -166,7 +154,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="product-detail-page__options">
                 <label className="product-detail-page__options-label">Size</label>
                 <div className="product-detail-page__options-group">
-                  {product.sizes.map((size) => (
+                  {product.sizes.map((size: string) => (
                     <button
                       key={size}
                       className={`product-detail-page__option-btn ${selectedSize === size ? 'product-detail-page__option-btn--active' : ''}`}
@@ -183,7 +171,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="product-detail-page__options">
                 <label className="product-detail-page__options-label">Color</label>
                 <div className="product-detail-page__options-group">
-                  {product.colors.map((color) => (
+                  {product.colors.map((color: string) => (
                     <button
                       key={color}
                       className={`product-detail-page__option-btn ${selectedColor === color ? 'product-detail-page__option-btn--active' : ''}`}
@@ -215,12 +203,12 @@ export const ProductDetailPage: React.FC = () => {
                 </button>
               </div>
               <button 
-                className="product-detail-page__add-cart-btn"
+                className={`product-detail-page__add-cart-btn ${!product.inStock ? 'product-detail-page__add-cart-btn--disabled' : ''}`}
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
               >
                 <ShoppingCart size={18} strokeWidth={1.5} />
-                {addedToCart ? 'Added!' : 'Add to Cart'}
+                {!product.inStock ? 'Out of Stock' : addedToCart ? 'Added!' : 'Add to Cart'}
               </button>
             </div>
 

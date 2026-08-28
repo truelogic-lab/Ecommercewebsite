@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Users, Star } from 'lucide-react';
 import { useCartContext } from '../context/CartContext';
+import { useAdmin } from '../context/AdminContext';
 import './HeroSection.css';
 
 export const HeroSection: React.FC = () => {
   const { addItem } = useCartContext();
+  const { homepageSettings } = useAdmin();
 
   const handleShopNow = () => {
     const featuredProduct = {
@@ -18,20 +20,25 @@ export const HeroSection: React.FC = () => {
     addItem(featuredProduct);
   };
 
+  const {
+    heroTitle = 'Discover Products You\'ll Love',
+    heroSubtitle = 'Shop the latest trending products curated for modern lifestyles.',
+    heroButtonText = 'Shop Now',
+    heroButtonLink = '/collection'
+  } = homepageSettings;
+
   return (
     <section className="hero">
       <div className="hero__container">
         <div className="hero__content">
-          <h1 className="hero__title">Discover Products<br />You'll Love</h1>
-          <p className="hero__description">
-            Shop the latest trending products curated for modern lifestyles.
-          </p>
+          <h1 className="hero__title">{heroTitle}</h1>
+          <p className="hero__description">{heroSubtitle}</p>
           <div className="hero__actions">
             <button className="hero__btn-primary" onClick={handleShopNow}>
               <ShoppingCart size={18} strokeWidth={1.5} />
-              Shop Now
+              {heroButtonText}
             </button>
-            <Link to="/collection" className="hero__btn-secondary">
+            <Link to={heroButtonLink} className="hero__btn-secondary">
               Explore Collection
             </Link>
           </div>

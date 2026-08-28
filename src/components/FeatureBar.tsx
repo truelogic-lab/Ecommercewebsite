@@ -1,13 +1,16 @@
 import React from 'react';
 import { Truck, Lock, RotateCcw, Headphones } from 'lucide-react';
+import { useAdmin } from '../context/AdminContext';
 import './FeatureBar.css';
 
 export const FeatureBar: React.FC = () => {
+  const { settings } = useAdmin();
+
   const features = [
     {
       icon: Truck,
       title: 'Free Shipping',
-      description: 'On orders over $50'
+      description: `On orders over $${settings.freeShippingThreshold || 50}`
     },
     {
       icon: Lock,

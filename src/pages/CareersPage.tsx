@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Briefcase, MapPin, Clock, Users, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Briefcase, MapPin, Clock, ChevronRight } from 'lucide-react';
 import './CareersPage.css';
 
 export const CareersPage: React.FC = () => {

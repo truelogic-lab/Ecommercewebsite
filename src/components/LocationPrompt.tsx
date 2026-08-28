@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Navigation, X, Check, AlertCircle, Globe } from 'lucide-react';
+import { Navigation, X, Check, AlertCircle, Globe } from 'lucide-react';
 import './LocationPrompt.css';
 
 interface LocationPromptProps {
@@ -11,7 +11,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
   const [isLoading, setIsLoading] = useState(false);
   const [location, setLocation] = useState<{ lat: number; lng: number; address: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isDismissed, setIsDismissed] = useState(false);
   const [notification, setNotification] = useState<{ type: 'success' | 'error' | null; message: string }>({
     type: null,
     message: '',
@@ -59,7 +58,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
         const { latitude, longitude } = position.coords;
         
         try {
-          // Use a more reliable reverse geocoding service
           const response = await fetch(
             `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
           );
@@ -81,7 +79,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
           setLocation(locationData);
           localStorage.setItem('userLocation', JSON.stringify(locationData));
           setIsVisible(false);
-          setIsDismissed(false);
           
           showNotification('success', `Location detected: ${address}`);
           
@@ -89,7 +86,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
             onLocationGranted(locationData);
           }
         } catch {
-          // Fallback to coordinates with a more user-friendly format
           const locationData = {
             lat: latitude,
             lng: longitude,
@@ -98,7 +94,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
           setLocation(locationData);
           localStorage.setItem('userLocation', JSON.stringify(locationData));
           setIsVisible(false);
-          setIsDismissed(false);
           
           showNotification('success', 'Location detected successfully');
           
@@ -123,7 +118,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
         setError(errorMessage);
         setIsLoading(false);
         showNotification('error', 'Location access denied');
-        console.warn('Location error:', err.message);
       },
       {
         enableHighAccuracy: true,
@@ -134,7 +128,6 @@ export const LocationPrompt: React.FC<LocationPromptProps> = ({ onLocationGrante
   };
 
   const handleDismiss = () => {
-    setIsDismissed(true);
     setIsVisible(false);
     localStorage.setItem('locationDismissed', 'true');
     showNotification('error', 'Location skipped - manual entry required');

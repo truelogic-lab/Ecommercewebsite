@@ -8,9 +8,7 @@ import {
   Clock, 
   CreditCard, 
   Smartphone,
-  Shield,
   Lock,
-  Percent,
   X,
   MapPin,
   User,
@@ -23,6 +21,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { useCartContext } from '../context/CartContext';
+import { useAdmin } from '../context/AdminContext';
 import './CheckoutPage.css';
 
 interface FormData {
@@ -67,6 +66,7 @@ interface PaymentMethod {
 export const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
   const { items, getTotalPrice, clearCart } = useCartContext();
+  const { settings } = useAdmin();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -90,15 +90,16 @@ export const CheckoutPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
-  const [orderData, setOrderData] = useState<any>(null);
   const [isLocating, setIsLocating] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
   const [locationSuccess, setLocationSuccess] = useState<string | null>(null);
 
+  const currency = settings?.currency || 'USD';
+
   const deliveryOptions: DeliveryOption[] = [
-    { id: 'standard', name: 'Standard Delivery', description: 'Reliable delivery to your doorstep', price: 300, estimatedDays: '2-4 business days' },
-    { id: 'express', name: 'Express Delivery', description: 'Priority handling and faster delivery', price: 700, estimatedDays: '1-2 business days' },
-    { id: 'same-day', name: 'Same-Day Delivery', description: 'Order today, delivered today', price: 1200, estimatedDays: 'Same day' },
+    { id: 'standard', name: 'Standard Delivery', description: 'Reliable delivery to your doorstep', price: settings?.standardDeliveryCost || 5, estimatedDays: '2-4 business days' },
+    { id: 'express', name: 'Express Delivery', description: 'Priority handling and faster delivery', price: settings?.expressDeliveryCost || 15, estimatedDays: '1-2 business days' },
+    { id: 'same-day', name: 'Same-Day Delivery', description: 'Order today, delivered today', price: settings?.sameDayDeliveryCost || 25, estimatedDays: 'Same day' },
   ];
 
   const paymentMethods: PaymentMethod[] = [
@@ -116,7 +117,9 @@ export const CheckoutPage: React.FC = () => {
 
   const subtotal = getTotalPrice();
   const deliveryCost = deliveryOptions.find(d => d.id === selectedDelivery)?.price || 0;
-  const total = subtotal + deliveryCost - discount;
+  const freeShippingThreshold = settings?.freeShippingThreshold || 50;
+  const finalDeliveryCost = subtotal >= freeShippingThreshold ? 0 : deliveryCost;
+  const total = subtotal + finalDeliveryCost - discount;
 
   const validateStep = (step: number): boolean => {
     const newErrors: FormErrors = {};
@@ -266,7 +269,6 @@ export const CheckoutPage: React.FC = () => {
         ]
       };
       
-      setOrderData(orderData);
       saveOrder(orderData);
       setOrderComplete(true);
       clearCart();
@@ -731,7 +733,9 @@ export const CheckoutPage: React.FC = () => {
                           </span>
                         </div>
                       </div>
-                      <span className="checkout-page__delivery-option-price">${option.price.toFixed(2)}</span>
+                      <span className="checkout-page__delivery-option-price">
+                        {subtotal >= (settings?.freeShippingThreshold || 50) ? 'Free' : `${currency}${option.price.toFixed(2)}`}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -795,7 +799,7 @@ export const CheckoutPage: React.FC = () => {
                     onClick={handlePlaceOrder}
                     disabled={isSubmitting || !selectedDelivery || !selectedPayment}
                   >
-                    {isSubmitting ? 'Processing...' : `Pay $${total.toFixed(2)}`}
+                    {isSubmitting ? 'Processing...' : `Pay ${currency}${total.toFixed(2)}`}
                   </button>
                 </div>
               </div>
@@ -824,7 +828,7 @@ export const CheckoutPage: React.FC = () => {
               </div>
               <div className="checkout-page__summary-row">
                 <span>Delivery</span>
-                <span>${deliveryCost.toFixed(2)}</span>
+                <span>{subtotal >= (settings?.freeShippingThreshold || 50) ? 'Free' : `$${deliveryCost.toFixed(2)}`}</span>
               </div>
               {discount > 0 && (
                 <div className="checkout-page__summary-row checkout-page__summary-row--discount">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
   Package, 
@@ -13,7 +13,6 @@ import {
   User, 
   Search, 
   X,
-  ShoppingBag,
   Box
 } from 'lucide-react';
 import './OrderTrackingPage.css';
@@ -56,7 +55,6 @@ interface StoredOrder extends Order {
 }
 
 export const OrderTrackingPage: React.FC = () => {
-  const navigate = useNavigate();
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [selectedOrder, setSelectedOrder] = useState<StoredOrder | null>(null);
   const [searchQuery, setSearchQuery] = useState('');

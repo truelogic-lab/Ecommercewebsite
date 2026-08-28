@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Check, Clock } from 'lucide-react';
 import { useCartContext } from '../context/CartContext';
+import { useAdmin } from '../context/AdminContext';
 import './FlashSale.css';
 
 export const FlashSale: React.FC = () => {
   const [time, setTime] = useState({ days: 2, hours: 15, minutes: 45, seconds: 30 });
   const { addItem } = useCartContext();
+  const { homepageSettings } = useAdmin();
+
+  const {
+    flashSaleTitle = 'Flash Sale',
+    flashSaleBadge = 'Up To 70% Off',
+    flashSaleDiscount = '70'
+  } = homepageSettings;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,8 +63,8 @@ export const FlashSale: React.FC = () => {
       <div className="flash-sale__container">
         <div className="flash-sale__content">
           <div className="flash-sale__header">
-            <h2 className="flash-sale__title">Flash Sale</h2>
-            <span className="flash-sale__badge">Up To 70% Off</span>
+            <h2 className="flash-sale__title">{flashSaleTitle}</h2>
+            <span className="flash-sale__badge">{flashSaleBadge}</span>
           </div>
           <div className="flash-sale__timer">
             <Clock className="flash-sale__timer-icon" size={20} strokeWidth={1.5} />

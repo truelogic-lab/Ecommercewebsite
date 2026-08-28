@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Cookie, Check, Shield, Info } from 'lucide-react';
+import { X, Cookie, Check, Info } from 'lucide-react';
 import './CookieConsent.css';
 
 export const CookieConsent: React.FC = () => {
